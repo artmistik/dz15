@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="textReplacerApp">
+
+<head>
+  <title>AngularJS Text Replacer</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body>
+  <div ng-controller="TextReplacerController">
+    <h3>Текстові символи:</h3>
+    <input type="text" ng-model="text">
+    <p>{{ replaceWithText() }}</p>
+
+    <h3>Числові символи:</h3>
+    <input type="text" ng-model="text">
+    <p>{{ replaceWithNumbers() }}</p>
+  </div>
+
+  <script>
+    var app = angular.module('textReplacerApp', []);
+
+    app.controller('TextReplacerController', function ($scope) {
+      $scope.replaceWithText = function () {
+        if ($scope.text) {
+          return $scope.text.replace(/[0-9]/g, 'текст');
+        }
+        return '';
+      };
+
+      $scope.replaceWithNumbers = function () {
+        if ($scope.text) {
+          return $scope.text.replace(/[a-zA-Zа-яА-Я]/g, '1');
+        }
+        return '';
+      };
+    });
+  </script>
+</body>
+
+</html>
